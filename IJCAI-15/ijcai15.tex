@@ -1,0 +1,520 @@
+%%%% ijcai15.tex
+
+\typeout{IJCAI-15 }
+
+% These are the instructions for authors for IJCAI-15.
+% They are the same as the ones for IJCAI-11 with superficical wording
+%   changes only.
+
+\documentclass{article}
+% The file ijcai15.sty is the style file for IJCAI-15 (same as ijcai07.sty).
+\usepackage{ijcai15}
+
+% Use the postscript times font!
+\usepackage{times}
+
+% the following package is optional:
+%\usepackage{latexsym} 
+
+% Following comment is from ijcai97-submit.tex:
+% The preparation of these files was supported by Schlumberger Palo Alto
+% Research, AT\&T Bell Laboratories, and Morgan Kaufmann Publishers.
+% Shirley Jowell, of Morgan Kaufmann Publishers, and Peter F.
+% Patel-Schneider, of AT\&T Bell Laboratories collaborated on their
+% preparation.
+
+% These instructions can be modified and used in other conferences as long
+% as credit to the authors and supporting agencies is retained, this notice
+% is not changed, and further modification or reuse is not restricted.
+% Neither Shirley Jowell nor Peter F. Patel-Schneider can be listed as
+% contacts for providing assistance without their prior permission.
+
+% To use for other conferences, change references to files and the
+% conference appropriate and use other authors, contacts, publishers, and
+% organizations.
+% Also change the deadline and address for returning papers and the length and
+% page charge instructions.
+% Put where the files are available in the appropriate places.
+
+\title{IJCAI--15 Experiment Rationale and Design}
+\author{Dustin Dannenhauer \\
+Lehigh University\\
+Bethlehem, PA USA \\
+dtd212@lehigh.edu}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  The following is a rough outline of this document. (1) Why are richer expectations
+  are needed? (2) A high level english description of how to compute
+  these expectation. (3) Comparison of this new technique against other
+  GDA research. (4) Proposed experimental setup to show how this new
+  technique compares to previous methods of obtaining expectations and
+  checking they are met.
+\end{abstract}
+
+\section{Motivation for richer expectations}
+Previous GDA systems such as ARTUE (Molineaux and Aha ACS 2014)
+represent expectations as an instance of a state. In their ACS 2014
+paper: ``The planner outputs (1) a plan $\pi_c$, which is an action
+sequence $A_c = [a_{c+1},..., a_{c+n}]$ and (2) a sequence of
+expectations $X_c = [x_{c+1},..., x_{c+n}],$ where $x_i \in X_c$ is
+the state expected after executing $a_i$ in $A_c$ and $x_{c+n} \in
+g_c$.'' This is representative of most GDA
+systems\footnotemark[1]. Expectations are the state after the action
+has been executed and are computed at the time of plan generation by
+keeping track of the state after each action has been added to the
+plan.
+
+Discrepancy detection (discrete only) compares expectations to the
+observed state and an anomaly occurs if either some fact in the
+observed state is not in the expected state or the observed state is
+missing a fact contained in the expectation. In Molineaux's work this
+is sufficient because they test their system on a small domain with
+small states\footnotemark[2] and expectations are only meant to
+describe the expected change in state after a single action. As we
+will show later in the paper, more real-world situations will require
+agents to have expectations for executing more than 1 action.
+
+Expectations are meant to capture the required change(s) that an
+action should have on the environment. By representing expectations as
+states unnecessary information is held by the expectation in all but
+the simplest domains (i.e. MudWorld is a simple enough domain). An
+example of a domain where expectations cannot be represented as entire
+state is Starcraft, the real-time strategy game\footnotemark[3]. Thus
+we come to the question: ``What information should an expectation
+contain?''. 
+
+\section{Algorithm High-Level Description}
+The natural first answer to this question: ``What information should
+an expectation contain?'' is to use effects of the operator that
+produces the action as it is added to the
+plan\footnotemark[4]. However, at some point in time, those facts may
+then be removed by other operators as part of their delete list, in
+which case we should remove them from the expectation. Thus our
+planner will output a sequence of expectations $X_c = [x_{c+1},...,
+x_{c+n}],$ where $x_i \in X_c$ is a set of facts such that
+$x_i \subset xs_i$ where $xs_i$ is the expected state after executing
+$a_i$ in $A_c$. Thus this is the primary motivation for our algorithm,
+which calculates expectations in this manner.
+
+\section{Background}
+Describe all other GDA research regarding expectations.
+
+
+
+\section{Proposed Experiment}
+I need to show expectations
+
+\subsection{Domain}
+The domain will be a simple tile world inspired by \textit{MudWorld}
+(Molineaux and Aha - ACS 2014). This domain will be catered toward two
+types of tasks the agent will perform: navigation tasks and perimeter
+tasks. Tiles in the world will have a 40\% chance of being mud, which
+are inhibitors of navigation and perimeter tasks (because both involve
+movement). If a tile is a mud tile then the agent will become stuck
+and must generate the goal to become unstuck before resuming its
+previous goal. The domain will also have another type of obstacle like
+mud, but something that won't affect navigation tasks, only perimeter
+tasks.
+
+\subsubsection{Goals}
+\begin{itemize}
+\item *Travel from start to destination (expectations: no mud) - mud causes rover to be stuck, rover needs to perform unstuck manueaver.
+\item (Idea 1) Travel from start to destination to start (exploration mission) and place battery charging stations along the way so that the rover can make its way back (suppose the rover can only carry one battery at a time).
+\item (Idea 2) Place 3 battery charging stations at given sites (expectations: clear skies, i.e. no trees - clouds are events that prevent this?!)
+\item *(Idea 3) Place beacons to signify good landing sites for incoming spacecraft - lets say magnetic radiation disturbs the ability for the beacon to transmit its location. The beacon both transmits signals to the agent and the incoming spacecraft. Expectation is that beacon signal either doesn't make it to the agent or is incorrect (altered) when the agent gets it. Thus this situation does not affect navigation tasks only perimeter tasks.
+\end{itemize}
+
+\subsubsection{Planner}
+The planner will be python SHOP. The grounded variables in the state
+will include the rover, each tile (TileA1, TileC3, etc) The domain
+model will have the following operators and methods:
+
+\begin{itemize}
+\item Operator for moving rover north, south, west, east
+\item Method for moving from one tile to another tile not adjacent 
+\item Method for getting unstuck (e.g. clean wheels)
+\item Operator for performing perimeter related actions
+\end{itemize} 
+
+\subsection{Measuring Performance}
+The following data will be collected during experiments:
+\begin{itemize}
+\item Number of plans achieved (recall)
+\item Number of plans failed (precision)
+\item Number of anomalies correctly identified
+\item Number of anomalies missed (went undetected)
+\item Number of false positive anomalies (no anomaly but system detected anomaly)
+\end{itemize}
+
+\subsection{Agents}
+\begin{enumerate}
+\item \textbf{OperatorEffects} This system will generate expectations that are simply the effects of the operator to be performed. \textbf{Prediction of behavior:} This system will not identify obstacles prohibiting perimeter goals and will thus fail on all instances when an obstacle inhibiting a perimeter goal occurs.
+\item \textbf{MolineauxAha2014} The baseline system will use expectations that are states, just like in (Molineaux and Aha - ACS 2014). The expectations will be generated at the same time the plans are generated and will be checked after each action is performed by the agent. \textbf{Prediction of behavior:} The agent's descrepancy detection will incorrectly identify expectations for plans achieving navigation goals because of the facts in the state that are obstacles to the perimeter goals. These obstacles shouldn't affect the navigation goals but because of the way these expectations are generated they will incorrectly identify anomalies \footnotemark[5]. 
+\item \textbf{HTNLearnedExpectations} This system will use our LearnExpectations Algorithm to generate expectations at the time of planning and will correctly detect all discrepancies and will not detect any false-positive descrepancies.
+\end{enumerate}
+
+\section{Summary of Molineaux's Experiments:}
+\textbf{Primary Question:} How exactly did learning new event models cause the agent to reach its destination faster? Did the planner create a new plan? No, because it did not know where mud would be and therefore could not plan around it. Considering this, did the system generate a new goal when it saw a mud tile, and the new goal resulted in a plan to take a different route avoiding the mud tile? I found this sentence: ``...execution cost is lower in each domain when planning with knowledge of the unknown event.'' The agent's in Molineaux's paper do not have goal formulation or goal management components (end of 3.1). After rereading the paper i think only in plan generation are the new modelss learned, this is because of the last section of 5.1. After discussing this with Hector, I've come to the conclusion that what their system did is create a plan and execute it. When the system came to a mud tile it would just go through it treating it like any other tile. Then it would be slowed and arrive at the next tile later than expected. This would generate a discrepancy and then an explanation would occur. The system would then learn that going through a mud tile causes it to slow down. Therefore the planner would then create a plan and expectations such that it expects to not go through any mud tiles. Therefore when the agent does get to a mud tile the planner would replan from that point taking in the mud tile into account, and thus would reach the destinatoin faster avoiding any possible mud tiles.
+\begin{itemize}
+\item \textit{FoolMeTwice} was evaluated on the execution cost to achieve its goals. Execution cost is the ``time taken to achieve the goal''. \textbf{Hypothesis:} After learning unknown event models, \textit{FoolMeTwice} will create plans that require less time (\textit{to execute}). There are no explicit learning goals  
+\item \textit{FoolMeTwice} was tested in two domains:
+\begin{itemize}
+\item \textit{Satellites} (based on the IPC 2003). For now I do not focus on this domain.
+\begin{itemize}
+\item Each scenario has 5 goals, requiring that an image of a random target be obtained in a random spectrum
+\end{itemize}
+\item \textit{MudWorld} (similar to Mars Rover domain from Molineaux's earlier work)
+\begin{itemize}
+\item 6x6 grid, random start and destination locations
+\item Every tile has a 40\% chance of having mud
+\item All routes between start and end are at least 4 steps
+\item (Assumed from paper) Every scenario only has one navigation goal
+\end{itemize}
+\end{itemize}
+\item Each domain had randomly generated 50 training scenarios and 25 test scenarios. Experiments were run by doing 5 rounds of: train on 5 training scenarios, run on all test scenarios, record data point, train on a different 5 training scenarios, run all on all test scenarios, record data point, rinse and repeat until you have 5 data points. Now replicate the whole process 10 times, and average all the first data points, all the second data points, etc. 
+\end{itemize}
+
+
+\section{Experiments}
+\subsection{Domain}
+The domain will be a square grid of size n (for now choose n=6) that
+will have mud tiles being generated with a probability of 40\% and
+magnetic radiation clouds (unobservable by the agent) occuring in a
+spot with 30\% probability that will last 3 ticks (i.e. one tick is
+the time it takes to execute one action). The goals of the agent will
+be either be to navigate from one location to another or mark multiple
+sites with a beacon. Mud is the only obstacle for navigation and
+magnetic radiation is the only thing that disrupts beacons. If
+magnetic radiation occurs in the same location as where a beacon is
+placed, the agent will lose communication with that beacon and thus
+assume it isn't there.
+
+Experiments will be run in the following manner: 
+\begin{enumerate}
+\item Generate $X+Y$ goals, where $X$ is a number of mud goals and $Y$ is a number of beacon goals
+\item Run each agent in the domain with the same goals given in the same order (assume a user is giving the goals one at a time)
+\item Record data from experiments and compare agents
+\end{enumerate}
+
+If expectations are not violated during plan execution, then plan is
+considered success.
+
+\subsection{Measuring Performance}
+The following data will be collected during experiments:
+\begin{itemize}
+\item Number of plans achieved
+\item Number of plans failed (accumulation of the following three data categories)
+\item Number of anomalies correctly identified
+\item Number of anomalies missed (went undetected)
+\item Number of false positive anomalies (no anomaly but system detected anomaly)
+\end{itemize}
+
+
+\subsection{Agent Implementations}
+Each agent will be given one goal at a time. That agent will generate
+a plan using the PyHOP planner. Then the plan will be simulated by
+creating a state variable starting with the current state of the
+environment and applying actions. As each action is being applied to
+the current state, there is a 10\% that any given tile will have a
+magnetic cloud appear on it and will last for 3 ticks (may increase
+from 3 later). After the action is applied to the state, the agent
+checks its expectations against its observations. If expectations
+match and it's the last action in the plan, plan is
+achieved. Otherwise if expectations don't match, plan is considered
+failed and we record data about the expectations (false positive,
+correctly identified). If plan fails (need ground truth checking here)
+but expectations say it did succeed, record this as anomaly missed.
+
+Each agent will be the same accept that we will simply switch out the
+expectations of that agent. Each agent will have different
+expectations output to the discrepancy detector.
+
+
+\subsection{Coding Requirements/Flow}
+\begin{enumerate}
+\item Create PyHOP domain files for mud world
+\item Test PyHOP on ability to produce correct plans for both nav and beacon goals
+\item Build simulator which will take some state and action, and return the new state which is the result of applying that action on that state
+\item Create three different expectation generation functions, one for each agent
+\item Test expectations are working
+\item Test each agent in mud world simulator with expectations and events like magnetic clouds appearing
+\item Code experiment setup involving (an agent executing multiple goals, recording when plans fail or succeed and when expectations are missed, falsely detected, or correct)
+\item Graph data from experiments
+\end{enumerate}
+
+\section{Another Experiment}
+see footnote 5
+
+\section{Important things for later}
+\begin{enumerate}
+\item Need to discuss discrepancy detection and how it is dependent on representation of expectations.
+\item Need to discuss how expectations are dependent on state representation.
+\item Making the problem harder (numerical constraints, i.e. probabilistic expectations?)
+\item Suppose expectations are just a full state and discrepancy detection is able to know what atoms in the expectation are relevant to compare to the current state, where does it get that knowledge? This is not a valid counter example.
+\end{enumerate}
+
+\footnotetext[1]{literature review needed to confirm this}
+\footnotetext[2]{would be nice to quantivately describe the size of the states}
+\footnotetext[3]{are there any references to how big a real-world domain would be for a robot?}
+\footnotetext[4]{I am assuming the planner is an HTN planner throughout this document}
+\footnotetext[5]{There is an interesting discussion to be had here. One may be able to argue for a simpler expectation generation algorithm and just expect to generate false-positives of anomalies and rely on the explanation generation to realize these anomalies are unfounded. But if explanation is expensive or knowledge-intensive, then it pays to have better expectations. We could run a further experiment testing this behavior.}
+
+
+
+
+
+%% \section{Introduction}
+
+%% The {\it IJCAI--15 Proceedings} will be printed from electronic
+%% manuscripts submitted by the authors. These must be PDF ({\em Portable
+%% Document Format}) files formatted for 8-1/2$''$ $\times$ 11$''$ paper.
+
+%% \subsection{Length of Papers}
+
+%% Each accepted full paper is allocated six pages in the conference 
+%% proceedings, excluded references. References can take up to one page.
+%% Up to two additional pages may be purchased at a price 
+%% of \$275 per page for any accepted paper. However, all 
+%% {\em submissions} must 
+%% be a maximum of six pages, plus at most one for references, in length.
+
+
+%% \subsection{Word Processing Software}
+
+%% As detailed below, IJCAI has prepared and made available a set of
+%% \LaTeX{} macros and a Microsoft Word template for use in formatting
+%% your paper. If you are using some other word processing software (such
+%% as WordPerfect, etc.), please follow the format instructions given
+%% below and ensure that your final paper looks as much like this sample
+%% as possible.
+
+%% \section{Style and Format}
+
+%% \LaTeX{} and Word style files that implement these instructions
+%% can be retrieved electronically. (See Appendix~\ref{stylefiles} for
+%% instructions on how to obtain these files.)
+
+%% \subsection{Layout}
+
+%% Print manuscripts two columns to a page, in the manner in which these
+%% instructions are printed. The exact dimensions for pages are:
+%% \begin{itemize}
+%% \item left and right margins: .75$''$
+%% \item column width: 3.375$''$
+%% \item gap between columns: .25$''$
+%% \item top margin---first page: 1.375$''$
+%% \item top margin---other pages: .75$''$
+%% \item bottom margin: 1.25$''$
+%% \item column height---first page: 6.625$''$
+%% \item column height---other pages: 9$''$
+%% \end{itemize}
+
+%% All measurements assume an 8-1/2$''$ $\times$ 11$''$ page size. For
+%% A4-size paper, use the given top and left margins, column width,
+%% height, and gap, and modify the bottom and right margins as necessary.
+
+%% \subsection{Format of Electronic Manuscript}
+
+%% For the production of the electronic manuscript, you must use Adobe's
+%% {\em Portable Document Format} (PDF). A PDF file can be generated, for
+%% instance, on Unix systems using {\tt ps2pdf} or on Windows systems
+%% using Adobe's Distiller. There is also a website with free software
+%% and conversion services: {\tt http://www.ps2pdf.com/}. For reasons of
+%% uniformity, use of Adobe's {\em Times Roman} font is strongly suggested. In
+%% \LaTeX2e{}, this is accomplished by putting
+%% \begin{quote} 
+%% \mbox{\tt $\backslash$usepackage\{times\}}
+%% \end{quote}
+%% in the preamble.\footnote{You may want also to use the package {\tt
+%% latexsym}, which defines all symbols known from the old \LaTeX{}
+%% version.}
+  
+%% Additionally, it is of utmost importance to specify the American {\bf
+%% letter} format (corresponding to 8-1/2$''$ $\times$ 11$''$) when
+%% formatting the paper. When working with {\tt dvips}, for instance, one
+%% should specify {\tt -t letter}.
+
+%% \subsection{Title and Author Information}
+
+%% Center the title on the entire width of the page in a 14-point bold
+%% font. Below it, center the author name(s) in a 12-point bold font, and
+%% then center the address(es) in a 12-point regular font. Credit to a
+%% sponsoring agency can appear on the first page as a footnote.
+
+%% \subsubsection{Blind Review}
+
+%% In order to make blind reviewing possible, authors must omit their
+%% names and affiliations when submitting the paper for review. In place
+%% of names and affiliations, provide a list of content areas. When
+%% referring to one's own work, use the third person rather than the
+%% first person. For example, say, ``Previously,
+%% Gottlob~\shortcite{gottlob:nonmon} has shown that\ldots'', rather
+%% than, ``In our previous work~\cite{gottlob:nonmon}, we have shown
+%% that\ldots'' Try to avoid including any information in the body of the
+%% paper or references that would identify the authors or their
+%% institutions. Such information can be added to the final camera-ready
+%% version for publication.
+
+%% \subsection{Abstract}
+
+%% Place the abstract at the beginning of the first column 3$''$ from the
+%% top of the page, unless that does not leave enough room for the title
+%% and author information. Use a slightly smaller width than in the body
+%% of the paper. Head the abstract with ``Abstract'' centered above the
+%% body of the abstract in a 12-point bold font. The body of the abstract
+%% should be in the same font as the body of the paper.
+
+%% The abstract should be a concise, one-paragraph summary describing the
+%% general thesis and conclusion of your paper. A reader should be able
+%% to learn the purpose of the paper and the reason for its importance
+%% from the abstract. The abstract should be no more than 200 words long.
+
+%% \subsection{Text}
+
+%% The main body of the text immediately follows the abstract. Use
+%% 10-point type in a clear, readable font with 1-point leading (10 on
+%% 11).
+
+%% Indent when starting a new paragraph, except after major headings.
+
+%% \subsection{Headings and Sections}
+
+%% When necessary, headings should be used to separate major sections of
+%% your paper. (These instructions use many headings to demonstrate their
+%% appearance; your paper should have fewer headings.)
+
+%% \subsubsection{Section Headings}
+
+%% Print section headings in 12-point bold type in the style shown in
+%% these instructions. Leave a blank space of approximately 10 points
+%% above and 4 points below section headings.  Number sections with
+%% arabic numerals.
+
+%% \subsubsection{Subsection Headings}
+
+%% Print subsection headings in 11-point bold type. Leave a blank space
+%% of approximately 8 points above and 3 points below subsection
+%% headings. Number subsections with the section number and the
+%% subsection number (in arabic numerals) separated by a
+%% period.
+
+%% \subsubsection{Subsubsection Headings}
+
+%% Print subsubsection headings in 10-point bold type. Leave a blank
+%% space of approximately 6 points above subsubsection headings. Do not
+%% number subsubsections.
+
+%% \subsubsection{Special Sections}
+
+%% You may include an unnumbered acknowledgments section, including
+%% acknowledgments of help from colleagues, financial support, and
+%% permission to publish.
+
+%% Any appendices directly follow the text and look like sections, except
+%% that they are numbered with capital letters instead of arabic
+%% numerals.
+
+%% The references section is headed ``References,'' printed in the same
+%% style as a section heading but without a number. A sample list of
+%% references is given at the end of these instructions. Use a consistent
+%% format for references, such as that provided by Bib\TeX{}. The reference
+%% list should not include unpublished work.
+
+%% \subsection{Citations}
+
+%% Citations within the text should include the author's last name and
+%% the year of publication, for example~\cite{gottlob:nonmon}.  Append
+%% lowercase letters to the year in cases of ambiguity.  Treat multiple
+%% authors as in the following examples:~\cite{abelson-et-al:scheme}
+%% or~\cite{bgf:Lixto} (for more than two authors) and
+%% \cite{brachman-schmolze:kl-one} (for two authors).  If the author
+%% portion of a citation is obvious, omit it, e.g.,
+%% Nebel~\shortcite{nebel:jair-2000}.  Collapse multiple citations as
+%% follows:~\cite{gls:hypertrees,levesque:functional-foundations}.
+%% \nocite{abelson-et-al:scheme}
+%% \nocite{bgf:Lixto}
+%% \nocite{brachman-schmolze:kl-one}
+%% \nocite{gottlob:nonmon}
+%% \nocite{gls:hypertrees}
+%% \nocite{levesque:functional-foundations}
+%% \nocite{levesque:belief}
+%% \nocite{nebel:jair-2000}
+
+%% \subsection{Footnotes}
+
+%% Place footnotes at the bottom of the page in a 9-point font.  Refer to
+%% them with superscript numbers.\footnote{This is how your footnotes
+%% should appear.} Separate them from the text by a short
+%% line.\footnote{Note the line separating these footnotes from the
+%% text.} Avoid footnotes as much as possible; they interrupt the flow of
+%% the text.
+
+%% \section{Illustrations}
+
+%% Place all illustrations (figures, drawings, tables, and photographs)
+%% throughout the paper at the places where they are first discussed,
+%% rather than at the end of the paper. If placed at the bottom or top of
+%% a page, illustrations may run across both columns.
+
+%% Illustrations must be rendered electronically or scanned and placed
+%% directly in your document. All illustrations should be in black and
+%% white, as color illustrations may cause problems. Line weights should
+%% be 1/2-point or thicker. Avoid screens and superimposing type on
+%% patterns as these effects may not reproduce well.
+
+%% Number illustrations sequentially. Use references of the following
+%% form: Figure 1, Table 2, etc. Place illustration numbers and captions
+%% under illustrations. Leave a margin of 1/4-inch around the area
+%% covered by the illustration and caption.  Use 9-point type for
+%% captions, labels, and other text in illustrations.
+
+%% \section*{Acknowledgments}
+
+%% The preparation of these instructions and the \LaTeX{} and Bib\TeX{}
+%% files that implement them was supported by Schlumberger Palo Alto
+%% Research, AT\&T Bell Laboratories, and Morgan Kaufmann Publishers.
+%% Preparation of the Microsoft Word file was supported by IJCAI.  An
+%% early version of this document was created by Shirley Jowell and Peter
+%% F. Patel-Schneider.  It was subsequently modified by Jennifer
+%% Ballentine and Thomas Dean, Bernhard Nebel, and Daniel Pagenstecher.
+%% These instructions are the same as the ones for IJCAI--05, prepared by
+%% Kurt Steinkraus, Massachusetts Institute of Technology, Computer
+%% Science and Artificial Intelligence Lab.
+
+%% \appendix
+
+%% \section{\LaTeX{} and Word Style Files}\label{stylefiles}
+
+%% The \LaTeX{} and Word style files are available on the IJCAI--15
+%% website, {\tt http://www.ijcai-15.org/}.
+%% These style files implement the formatting instructions in this
+%% document.
+
+%% The \LaTeX{} files are {\tt ijcai15.sty} and {\tt ijcai15.tex}, and
+%% the Bib\TeX{} files are {\tt named.bst} and {\tt ijcai15.bib}. The
+%% \LaTeX{} style file is for version 2e of \LaTeX{}, and the Bib\TeX{}
+%% style file is for version 0.99c of Bib\TeX{} ({\em not} version
+%% 0.98i). The {\tt ijcai15.sty} file is the same as the {\tt
+%% ijcai07.sty} file used for IJCAI--07.
+
+%% The Microsoft Word style file consists of a single file, {\tt
+%% ijcai15.doc}. This template is the same as the one used for
+%% IJCAI--07.
+
+%% These Microsoft Word and \LaTeX{} files contain the source of the
+%% present document and may serve as a formatting sample.  
+
+%% Further information on using these styles for the preparation of
+%% papers for IJCAI--15 can be obtained by contacting {\tt
+%% pcchair15@ijcai.org}.
+
+%% %% The file named.bst is a bibliography style file for BibTeX 0.99c
+%% \bibliographystyle{named}
+%% \bibliography{ijcai15}
+
+\end{document}
+

@@ -1,0 +1,74 @@
+﻿Build started 12/19/2013 4:07:56 PM.
+     1>Project "C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\RushBot.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\CL.exe /c /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D CHEESEBOT_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc90.pdb" /Gd /TP /analyze- /errorReport:prompt ..\Addons\Assignment.cpp AttackClosestScript.cpp Source\Dll.cpp ..\Addons\EnhancedUI.cpp Source\RushBot.cpp ..\Addons\Util.cpp ..\Addons\WorkerManager.cpp ..\Addons\BuildingPlacer.cpp ..\Addons\SupplyManager.cpp ..\Addons\ConstructionManager.cpp ..\Addons\Base.cpp ..\Addons\BaseManager.cpp ..\Addons\ProductionManager.cpp ..\Addons\MorphManager.cpp ..\Addons\BuildManager.cpp ..\Addons\TechManager.cpp ..\Addons\UpgradeManager.cpp ..\Addons\ScoutManager.cpp ..\Addons\BuildOrderManager.cpp ..\Addons\MetaUnit.cpp ..\Addons\UnitItem.cpp ..\Addons\DefenseManager.cpp ..\Addons\InformationManager.cpp ..\Addons\UnitGroup.cpp ..\Addons\UnitGroupManager.cpp ..\Addons\BorderManager.cpp
+         Assignment.cpp
+         AttackClosestScript.cpp
+         Dll.cpp
+         EnhancedUI.cpp
+         RushBot.cpp
+         Util.cpp
+         WorkerManager.cpp
+         BuildingPlacer.cpp
+         SupplyManager.cpp
+         ConstructionManager.cpp
+         Base.cpp
+         BaseManager.cpp
+         ProductionManager.cpp
+         MorphManager.cpp
+         BuildManager.cpp
+         TechManager.cpp
+         UpgradeManager.cpp
+         ScoutManager.cpp
+         BuildOrderManager.cpp
+         MetaUnit.cpp
+         Compiling...
+         UnitItem.cpp
+         DefenseManager.cpp
+         InformationManager.cpp
+         UnitGroup.cpp
+         UnitGroupManager.cpp
+         BorderManager.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\libraries\boost_1_51_0\stage\lib ../lib/Release/BWAPI.lib ../lib/Release/BWTA.lib ../lib/Release/tinyxml.lib "../lib/Release/CGAL-vc90-mt.lib" "../lib/Release/libboost_thread-vc90-mt-1_40.lib" "../lib/Release/gmp-vc90-mt.lib" "../lib/Release/mpfr-vc90-mt.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\DefendBaseBot.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.lib" /MACHINE:X86 /DLL Release\Assignment.obj
+         Release\AttackClosestScript.obj
+         Release\Dll.obj
+         Release\EnhancedUI.obj
+         Release\RushBot.obj
+         Release\Util.obj
+         Release\WorkerManager.obj
+         Release\BuildingPlacer.obj
+         Release\SupplyManager.obj
+         Release\ConstructionManager.obj
+         Release\Base.obj
+         Release\BaseManager.obj
+         Release\ProductionManager.obj
+         Release\MorphManager.obj
+         Release\BuildManager.obj
+         Release\TechManager.obj
+         Release\UpgradeManager.obj
+         Release\ScoutManager.obj
+         Release\BuildOrderManager.obj
+         Release\MetaUnit.obj
+         Release\UnitItem.obj
+         Release\DefenseManager.obj
+         Release\InformationManager.obj
+         Release\UnitGroup.obj
+         Release\UnitGroupManager.obj
+         Release\BorderManager.obj
+            Creating library C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.lib and object C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.exp
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+         Finished generating code
+         RushBot.vcxproj -> C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.dll
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.dll;#2" /manifest Release\DefendBaseBot.dll.intermediate.manifest
+       PostBuildEvent:
+         copy "C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\Release\DefendBaseBot.dll" "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4\..\bwapi-data\AI\DefendBaseBot.dll"
+         :VCEnd
+                 1 file(s) copied.
+     1>Done Building Project "C:\Users\dustin\Documents\GitHub\hierarchical-gda\core\OtherBots\DefendBaseBot\RushBot.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:27.12

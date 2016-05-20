@@ -1,0 +1,2851 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY starcraft_ontology "http://insyte.cse.lehigh.edu/starcraft_ontology#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/dustin/ontologies/2013/7/untitled-ontology-56#"
+     xml:base="http://www.semanticweb.org/dustin/ontologies/2013/7/untitled-ontology-56"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:starcraft_ontology="http://insyte.cse.lehigh.edu/starcraft_ontology#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/dustin/ontologies/2013/7/untitled-ontology-56"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#builds -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;builds">
+        <rdfs:comment>represents the structure that builds a particular unit</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Structure"/>
+        <owl:propertyDisjointWith rdf:resource="&starcraft_ontology;trains"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;FlyingVehicle"/>
+                    <rdf:Description rdf:about="&starcraft_ontology;GroundVehicle"/>
+                    <rdf:Description rdf:about="&starcraft_ontology;Structure"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#canBeBuiltBy -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;canBeBuiltBy">
+        <rdfs:comment>represents a building that can be built by a player</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#canBeTrainedBy -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;canBeTrainedBy">
+        <rdfs:comment>represents whether a player can produce a unit</rdfs:comment>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;canTrain"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#canBuild -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;canBuild">
+        <rdfs:comment>represents that a player has the ability to build a specific structure</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;StructureAbility"/>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;canBeBuiltBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#canTrain -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;canTrain">
+        <rdfs:comment>represents a fighting unit that can be trained by a player</rdfs:comment>
+        <rdfs:range rdf:resource="&starcraft_ontology;FightingUnitAbility"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#connectedTo -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;connectedTo">
+        <rdfs:comment>expresses that a chokepoint connects to a region</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#contains -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;contains">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:comment>expresses that a region contains a unit</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#containsUnitOf -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;containsUnitOf">
+        <rdfs:comment>represents that a region contains a unit of a specific player</rdfs:comment>
+        <rdfs:range rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Region"/>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;hasUnitIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#controls -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;controls">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasChokepoint -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasChokepoint">
+        <rdfs:comment>states that a region contains a particular chokepiont</rdfs:comment>
+        <rdfs:range rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Region"/>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;connectedTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasEnemyUnit -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasEnemyUnit">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Unit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasHumanCompetitor -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasHumanCompetitor">
+        <rdfs:comment>represents that a match has a particular human competitor</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasMap -->
+
+    <rdf:Description rdf:about="&starcraft_ontology;hasMap">
+        <rdfs:comment>represents the map used in a match</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasPlayer -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasPlayer">
+        <rdfs:comment>represents a player in a match</rdfs:comment>
+        <rdfs:range rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasPresenceIn -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasPresenceIn">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasStructure -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasStructure">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:comment>represents that a player owns a structure</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Unit"/>
+        <owl:equivalentProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;isOwnedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasUnit -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasUnit">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:comment>represents that a player owns a unit</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Unit"/>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;isOwnedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasUnitIn -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;hasUnitIn">
+        <rdfs:comment>represents that a player has a unit in a particular region</rdfs:comment>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#isConnectedToRegionOne -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;isConnectedToRegionOne">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#isConnectedToRegionTwo -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;isConnectedToRegionTwo">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#isInRegion -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;isInRegion">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+        <rdfs:range rdf:resource="&starcraft_ontology;Region"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <owl:inverseOf rdf:resource="&starcraft_ontology;contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#isOwnedBy -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;isOwnedBy">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>shows ownership of a unit by a player</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#playedAs -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;playedAs">
+        <rdfs:comment>represents the real-world competitor that controls a player</rdfs:comment>
+        <rdfs:range rdf:resource="&starcraft_ontology;Player"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#trains -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;trains">
+        <rdfs:comment>represents which structure is responsible for training a particular Unit</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Structure"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;SCV"/>
+                    <rdf:Description rdf:about="&starcraft_ontology;Soldier"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#unlocks -->
+
+    <owl:ObjectProperty rdf:about="&starcraft_ontology;unlocks">
+        <rdfs:comment>represents the Unit that unlocks a given structure</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Structure"/>
+        <rdfs:range rdf:resource="&starcraft_ontology;Unit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="&owl;topObjectProperty">
+        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasArmor -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasArmor">
+        <rdfs:comment>Represents the armor level of a unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasAttackDamage -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasAttackDamage">
+        <rdfs:comment>Represents the amount of damage a unit can do in attacking.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasAttackRange -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasAttackRange">
+        <rdfs:comment>Shows the range of attack for a unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasBuildTime -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasBuildTime">
+        <rdfs:comment>Shows how long it takes to produce the unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasCenterX -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasCenterX">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Region"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasCenterY -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasCenterY">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Region"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasChokepointCenterX -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasChokepointCenterX">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasChokepointCenterY -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasChokepointCenterY">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasChokepointId -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasChokepointId">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasCurrentHitPoints -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasCurrentHitPoints">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasElapsedGameTime -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasElapsedGameTime">
+        <rdfs:comment>represents the elapsed game time</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasEnergy -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasEnergy">
+        <rdfs:comment>Shows the energy level of a unit (if avaliable).</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasGasCost -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasGasCost">
+        <rdfs:comment>Shows how much gas is required to produce a unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasMaxHitPoints -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasMaxHitPoints">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasMaxNumOfPlayers -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasMaxNumOfPlayers">
+        <rdfs:comment>represents the max number of players in a map</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasMineralCost -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasMineralCost">
+        <rdfs:comment>Shows the cost of minerals required to buld the unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasName -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasName">
+        <rdfs:comment>Name of a map.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasNumberOfPlayers -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasNumberOfPlayers">
+        <rdfs:comment>Total number of players in a match.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasNumberOfRegions -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasNumberOfRegions">
+        <rdfs:comment>Shows the total number of regions in a map.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasPlayerId -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasPlayerId">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Player"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasRateOfFire -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasRateOfFire">
+        <rdfs:comment>Shows the rate of fire for a unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasRegionId -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasRegionId">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Region"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasSize -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasSize">
+        <rdfs:comment>Shows the total number of tilesets a unit takes up on a map.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasSpeed -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasSpeed">
+        <rdfs:comment>Shows speed of unit.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasStartDate -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasStartDate">
+        <rdfs:comment>represents the start date of the match</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasTileSet -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasTileSet">
+        <rdfs:comment>The theme tileset of a map.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasTravelType -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasTravelType">
+        <rdfs:comment>Represents the way a unit travels.
+</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasUnitId -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasUnitId">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasWebsite -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasWebsite">
+        <rdfs:comment>represents the website containing information about a match, if available</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasWidth -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasWidth">
+        <rdfs:comment>Used to identfy the size of a chokepoint between regions on a map.</rdfs:comment>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Chokepoint"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasXCoord -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasXCoord">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#hasYCoord -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;hasYCoord">
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#isBeingAttacked -->
+
+    <owl:DatatypeProperty rdf:about="&starcraft_ontology;isBeingAttacked">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#sameAs -->
+
+    <owl:DatatypeProperty rdf:about="&owl;sameAs">
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Ability -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Ability"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Academy -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Academy">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;AdvancedStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Armory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Barracks"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Bunker"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;CommandCenter"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;EngineeringBay"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Factory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>An acadmey is used to do research for upgrades.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Addon -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Addon">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#AdvancedStructure -->
+
+    <owl:Class rdf:about="&starcraft_ontology;AdvancedStructure">
+        <rdfs:label>Advanced Structure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Structure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Barracks"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Bunker"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;CommandCenter"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;EngineeringBay"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>These structures can be produced after certain basic structures have been built.</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Armory"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Factory"/>
+            <rdf:Description rdf:about="&starcraft_ontology;ScienceFacility"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Starport"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Armory -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Armory">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;AdvancedStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Barracks"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Bunker"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;CommandCenter"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;EngineeringBay"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Factory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>The armory is used to do advanced research.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Barracks -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Barracks">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Bunker"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;CommandCenter"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;EngineeringBay"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Factory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>A barracks is used to produce soldiers.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#BasicStructure -->
+
+    <owl:Class rdf:about="&starcraft_ontology;BasicStructure">
+        <rdfs:label>Basic Structure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Structure"/>
+        <rdfs:comment>Most basic structures are avaliable to be produced as soon as a game starts.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Battlecruiser -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Battlecruiser">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Dropship"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Firebat"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Ghost"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Goliath"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The battle cruiser is Tarrens most powerful unit and employs the most powerful weapons.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Bunker -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Bunker">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;CommandCenter"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;EngineeringBay"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Factory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>A bunker is the main defense for a base from ground forces.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Chokepoint -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Chokepoint">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;Chokepoint"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;connectedTo"/>
+                        <owl:onClass rdf:resource="&starcraft_ontology;Region"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#CommandCenter -->
+
+    <owl:Class rdf:about="&starcraft_ontology;CommandCenter">
+        <rdfs:label>Command Center</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;EngineeringBay"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Factory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>The command center is the heart of a base and is used to collect resources and build workers.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ComsatStation -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ComsatStation">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Addon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ContestedChokepoint -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ContestedChokepoint">
+        <rdfs:label>Contested Chokepoint</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Chokepoint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ContestedRegion -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ContestedRegion">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;KnownRegion"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ControlledRegion"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;UnknownRegion"/>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ControlTower -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ControlTower">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Addon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ControlledRegion -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ControlledRegion">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;KnownRegion"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;UnknownRegion"/>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#CovertOps -->
+
+    <owl:Class rdf:about="&starcraft_ontology;CovertOps">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Addon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Dropship -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Dropship">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Firebat"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Ghost"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Goliath"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>A dropship is used mainly to load and unload ground units to different parts of the map.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Enemy -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Enemy">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Player"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#EnemyUnit -->
+
+    <owl:Class rdf:about="&starcraft_ontology;EnemyUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;Unit"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;isOwnedBy"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;player1"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;FriendlyUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#EngineeringBay -->
+
+    <owl:Class rdf:about="&starcraft_ontology;EngineeringBay">
+        <rdfs:label>Engineering Bay</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Factory"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>The bay can be used to research upgrades to soldiers attack abilities and armor.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Factory -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Factory">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;AdvancedStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;MissileTurret"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>The factory is used to produce ground vehicles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#FightingUnit -->
+
+    <owl:Class rdf:about="&starcraft_ontology;FightingUnit">
+        <rdfs:label>Fighting Unit</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:comment>A fighting unit is any unit which is not a structure (ie can move and attack).</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;FlyingVehicle"/>
+            <rdf:Description rdf:about="&starcraft_ontology;GroundVehicle"/>
+            <rdf:Description rdf:about="&starcraft_ontology;SCV"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Soldier"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#FightingUnitAbility -->
+
+    <owl:Class rdf:about="&starcraft_ontology;FightingUnitAbility">
+        <rdfs:label>Fighting Unit Ability</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Ability"/>
+        <rdfs:comment>This class represents a fighting units ability to be produced</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Firebat -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Firebat">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Ghost"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Goliath"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;NuclearMissile"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>A firebat can shot fire and is effective at close range.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#FlyingVehicle -->
+
+    <owl:Class rdf:about="&starcraft_ontology;FlyingVehicle">
+        <rdfs:label>Flying Vehicle</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Ghost"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Goliath"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <rdfs:comment>Flying units are produced exclusively at a starport and can move around only by flying.</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Battlecruiser"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Dropship"/>
+            <rdf:Description rdf:about="&starcraft_ontology;ScienceVessel"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Valkyrie"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Wraith"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#FriendlyUnit -->
+
+    <owl:Class rdf:about="&starcraft_ontology;FriendlyUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;Unit"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;isOwnedBy"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;player0"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Ghost -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Ghost">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Goliath"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;NuclearMissile"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The ghost is like a sniper, effective at long range and also has a number of abilities such as turning invinsible. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Goliath -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Goliath">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;NuclearMissile"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>This unit is essentialy a walking robot which is effective in attacking flying units and ground units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#GroundVehicle -->
+
+    <owl:Class rdf:about="&starcraft_ontology;GroundVehicle">
+        <rdfs:label>Ground Vehicle</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Marine"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;NuclearMissile"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>Ground units are produced only at a factory.</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Goliath"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Tank"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Vulture"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#KnownRegion -->
+
+    <owl:Class rdf:about="&starcraft_ontology;KnownRegion">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Region"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;UnknownRegion"/>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;ContestedRegion"/>
+            <rdf:Description rdf:about="&starcraft_ontology;ControlledRegion"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#MachineShop -->
+
+    <owl:Class rdf:about="&starcraft_ontology;MachineShop">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Addon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Marine -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Marine">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Medic"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;NuclearMissile"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The marine is the basic soldier but effective at attacking in large groups.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Medic -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Medic">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;NuclearMissile"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The medic can cause some damage to enemy units but is moslty good for healing units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#MissileTurret -->
+
+    <owl:Class rdf:about="&starcraft_ontology;MissileTurret">
+        <rdfs:label>Missile Turret</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Refinery"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>Missle turrets are a bases main defense from air units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#NotUnderAttackUnit -->
+
+    <owl:Class rdf:about="&starcraft_ontology;NotUnderAttackUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;Unit"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;isBeingAttacked"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;UnderAttackUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#NuclearMissile -->
+
+    <owl:Class rdf:about="&starcraft_ontology;NuclearMissile">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SCV"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#NuclearSilo -->
+
+    <owl:Class rdf:about="&starcraft_ontology;NuclearSilo">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Addon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#PhysicsLab -->
+
+    <owl:Class rdf:about="&starcraft_ontology;PhysicsLab">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Addon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Player -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Player">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>This class represents a player, whether he&apos;s lossing and winning and all his resources.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Refinery -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Refinery">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceFacility"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>The refinery is used to harvest gas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Region -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Region">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>A region represents an area on a map which is controlled by a player.</rdfs:comment>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;KnownRegion"/>
+            <rdf:Description rdf:about="&starcraft_ontology;UnknownRegion"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#SCV -->
+
+    <owl:Class rdf:about="&starcraft_ontology;SCV">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;ScienceVessel"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>Worker units or SCV are used mainly for building structures and harvesting minerals and gas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ScienceFacility -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ScienceFacility">
+        <rdfs:label>Science Facility</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;AdvancedStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Starport"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>Science facility is used to do advance cabaility research.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ScienceVessel -->
+
+    <owl:Class rdf:about="&starcraft_ontology;ScienceVessel">
+        <rdfs:label>Science Vessel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SiegeTank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The science vessel has limited attack capability but can be used to apply force shields to other units to protect them.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#SiegeTank -->
+
+    <owl:Class rdf:about="&starcraft_ontology;SiegeTank">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Soldier"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Soldier -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Soldier">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Tank"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>Soldiers as the name implies are human units which walk around and are produced only at the barracks.</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Firebat"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Ghost"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Marine"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Medic"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#SpellScannerSweep -->
+
+    <owl:Class rdf:about="&starcraft_ontology;SpellScannerSweep">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Starport -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Starport">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;AdvancedStructure"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;SupplyDepot"/>
+        <rdfs:comment>A starport is used to produced flying units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Structure -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Structure">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+        <rdfs:comment>All structures can be produced by a worker unit only.</rdfs:comment>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Academy"/>
+            <rdf:Description rdf:about="&starcraft_ontology;AdvancedStructure"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Barracks"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Bunker"/>
+            <rdf:Description rdf:about="&starcraft_ontology;CommandCenter"/>
+            <rdf:Description rdf:about="&starcraft_ontology;EngineeringBay"/>
+            <rdf:Description rdf:about="&starcraft_ontology;MissileTurret"/>
+            <rdf:Description rdf:about="&starcraft_ontology;Refinery"/>
+            <rdf:Description rdf:about="&starcraft_ontology;SupplyDepot"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#StructureAbility -->
+
+    <owl:Class rdf:about="&starcraft_ontology;StructureAbility">
+        <rdfs:label>Structure Ability</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Ability"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#SupplyDepot -->
+
+    <owl:Class rdf:about="&starcraft_ontology;SupplyDepot">
+        <rdfs:label>Supply Depot</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <rdfs:comment>The role of a supply depot is mainly to increase the limit count of population.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Tank -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Tank">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Valkyrie"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The tank is the most powerful ground unit which also has the largest range of attack</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#UnderAttackUnit -->
+
+    <owl:Class rdf:about="&starcraft_ontology;UnderAttackUnit">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&starcraft_ontology;Unit"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;isBeingAttacked"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Unit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Unit -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Unit">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment>A unit in the game is either a building a fighting unit.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#UnknownRegion -->
+
+    <owl:Class rdf:about="&starcraft_ontology;UnknownRegion">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;Region"/>
+        <rdfs:comment>http://trowl.eu/REL#NBox</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Valkyrie -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Valkyrie">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Vulture"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The valkyrie ship can not attack ground units but is highly effective in attacking other flying units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Vulture -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Vulture">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;GroundVehicle"/>
+        <owl:disjointWith rdf:resource="&starcraft_ontology;Wraith"/>
+        <rdfs:comment>The vulture has lite armor and attack points but is the fastest unit Tarrens can build.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#Wraith -->
+
+    <owl:Class rdf:about="&starcraft_ontology;Wraith">
+        <rdfs:subClassOf rdf:resource="&starcraft_ontology;FlyingVehicle"/>
+        <rdfs:comment>The wrath is the main attack flying vehicle for Tarrens and can attak flying and ground units.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#academyAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;academyAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#armoryAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;armoryAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#barracksAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;barracksAvailable">
+        <rdf:type rdf:resource="&starcraft_ontology;Ability"/>
+        <rdf:type rdf:resource="&starcraft_ontology;StructureAbility"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#battleCruiserAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;battleCruiserAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#bunkerAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;bunkerAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#commandCenter0 -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;commandCenter0">
+        <rdf:type rdf:resource="&starcraft_ontology;BasicStructure"/>
+        <rdf:type rdf:resource="&starcraft_ontology;CommandCenter"/>
+        <rdf:type rdf:resource="&starcraft_ontology;FriendlyUnit"/>
+        <rdf:type rdf:resource="&starcraft_ontology;Structure"/>
+        <rdf:type rdf:resource="&starcraft_ontology;Unit"/>
+        <starcraft_ontology:isOwnedBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:isInRegion rdf:resource="&starcraft_ontology;regionA"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#commandCenterAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;commandCenterAvailable">
+        <rdf:type rdf:resource="&starcraft_ontology;Ability"/>
+        <rdf:type rdf:resource="&starcraft_ontology;StructureAbility"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#comsatStationAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;comsatStationAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#controlTowerAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;controlTowerAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#covertOpsAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;covertOpsAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#dropshipAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;dropshipAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#engineeringbayAvaliable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;engineeringbayAvaliable">
+        <rdf:type rdf:resource="&starcraft_ontology;Ability"/>
+        <rdf:type rdf:resource="&starcraft_ontology;StructureAbility"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#factoryAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;factoryAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#firebatAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;firebatAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#ghostAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;ghostAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#goliathAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;goliathAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#machineShopAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;machineShopAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#marineAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;marineAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#medicAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;medicAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#missileTurretAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;missileTurretAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#nuclearMissileAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;nuclearMissileAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#nuclearSiloAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;nuclearSiloAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#physicsLabAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;physicsLabAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#player0 -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;player0">
+        <rdf:type rdf:resource="&starcraft_ontology;Player"/>
+        <starcraft_ontology:hasPlayerId rdf:datatype="&xsd;int">0</starcraft_ontology:hasPlayerId>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;barracksAvailable"/>
+        <starcraft_ontology:hasStructure rdf:resource="&starcraft_ontology;commandCenter0"/>
+        <starcraft_ontology:hasUnit rdf:resource="&starcraft_ontology;commandCenter0"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;commandCenterAvailable"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;engineeringbayAvaliable"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;refineryAvailable"/>
+        <starcraft_ontology:hasPresenceIn rdf:resource="&starcraft_ontology;regionA"/>
+        <starcraft_ontology:hasUnitIn rdf:resource="&starcraft_ontology;regionA"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;supplyDepotAvailable"/>
+        <starcraft_ontology:hasUnit rdf:resource="&starcraft_ontology;worker0"/>
+        <starcraft_ontology:hasStructure rdf:resource="&starcraft_ontology;worker0"/>
+        <starcraft_ontology:hasEnemyUnit rdf:resource="&starcraft_ontology;worker1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#player1 -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;player1">
+        <rdf:type rdf:resource="&starcraft_ontology;Player"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;barracksAvailable"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;commandCenterAvailable"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;engineeringbayAvaliable"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;refineryAvailable"/>
+        <starcraft_ontology:hasPresenceIn rdf:resource="&starcraft_ontology;regionA"/>
+        <starcraft_ontology:hasUnitIn rdf:resource="&starcraft_ontology;regionA"/>
+        <starcraft_ontology:canBuild rdf:resource="&starcraft_ontology;supplyDepotAvailable"/>
+        <starcraft_ontology:hasUnit rdf:resource="&starcraft_ontology;worker1"/>
+        <starcraft_ontology:hasStructure rdf:resource="&starcraft_ontology;worker1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#refineryAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;refineryAvailable">
+        <rdf:type rdf:resource="&starcraft_ontology;Ability"/>
+        <rdf:type rdf:resource="&starcraft_ontology;StructureAbility"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#regionA -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;regionA">
+        <rdf:type rdf:resource="&starcraft_ontology;KnownRegion"/>
+        <rdf:type rdf:resource="&starcraft_ontology;Region"/>
+        <starcraft_ontology:contains rdf:resource="&starcraft_ontology;commandCenter0"/>
+        <starcraft_ontology:containsUnitOf rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:containsUnitOf rdf:resource="&starcraft_ontology;player1"/>
+        <starcraft_ontology:contains rdf:resource="&starcraft_ontology;worker0"/>
+        <starcraft_ontology:contains rdf:resource="&starcraft_ontology;worker1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#regionB -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;regionB">
+        <rdf:type rdf:resource="&starcraft_ontology;Region"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#scienceFacilityAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;scienceFacilityAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#siegeTankAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;siegeTankAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#spellScannerSweepAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;spellScannerSweepAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#starportAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;starportAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#supplyDepotAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;supplyDepotAvailable">
+        <rdf:type rdf:resource="&starcraft_ontology;Ability"/>
+        <rdf:type rdf:resource="&starcraft_ontology;StructureAbility"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:canBeBuiltBy rdf:resource="&starcraft_ontology;player1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#tankAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;tankAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#vultureAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;vultureAvailable"/>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#worker0 -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;worker0">
+        <rdf:type rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdf:type rdf:resource="&starcraft_ontology;FriendlyUnit"/>
+        <rdf:type rdf:resource="&starcraft_ontology;SCV"/>
+        <rdf:type rdf:resource="&starcraft_ontology;Unit"/>
+        <starcraft_ontology:isOwnedBy rdf:resource="&starcraft_ontology;player0"/>
+        <starcraft_ontology:isInRegion rdf:resource="&starcraft_ontology;regionA"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#worker1 -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;worker1">
+        <rdf:type rdf:resource="&starcraft_ontology;EnemyUnit"/>
+        <rdf:type rdf:resource="&starcraft_ontology;FightingUnit"/>
+        <rdf:type rdf:resource="&starcraft_ontology;SCV"/>
+        <rdf:type rdf:resource="&starcraft_ontology;Unit"/>
+        <starcraft_ontology:isOwnedBy rdf:resource="&starcraft_ontology;player1"/>
+        <starcraft_ontology:isInRegion rdf:resource="&starcraft_ontology;regionA"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://insyte.cse.lehigh.edu/starcraft_ontology#wraithAvailable -->
+
+    <owl:NamedIndividual rdf:about="&starcraft_ontology;wraithAvailable"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;controlTowerAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;scienceFacilityAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;starportAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;ScienceVessel"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;supplyDepotAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;armoryAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;controlTowerAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;starportAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Valkyrie"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;bunkerAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;EngineeringBay"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;medicAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Academy"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Barracks"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;physicsLabAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;ScienceFacility"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;covertOpsAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;ScienceFacility"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;barracksAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Marine"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;comsatStationAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Academy"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;CommandCenter"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;tankAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;machineShopAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;controlTowerAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;physicsLabAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;starportAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Battlecruiser"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;firebatAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Academy"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Barracks"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;barracksAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;commandCenterAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;armoryAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;factoryAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Goliath"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;academyAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;barracksAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Medic"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;starportAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Wraith"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;armoryAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;scienceFacilityAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Starport"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;factoryAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;machineShopAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SiegeTank"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;bunkerAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Barracks"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;marineAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Barracks"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;academyAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;barracksAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;covertOpsAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Ghost"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;nuclearMissileAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;CommandCenter"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;NuclearSilo"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;spellScannerSweepAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;ComsatStation"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;dropshipAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Starport"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;starportAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;commandCenterAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;nuclearSiloAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;NuclearMissile"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;factoryAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Vulture"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;wraithAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Starport"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;controlTowerAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Starport"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;academyAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;barracksAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Firebat"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;missileTurretAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;EngineeringBay"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;factoryAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Barracks"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;ghostAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Barracks"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;ScienceFacility"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;goliathAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Armory"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;battleCruiserAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;ScienceFacility"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Starport"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;player0"/>
+            <rdf:Description rdf:about="&starcraft_ontology;player1"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;vultureAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasStructure"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+    </owl:Restriction>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;engineeringbayAvaliable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+    </owl:Restriction>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;controlTowerAvailable"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                        <owl:hasValue rdf:resource="&starcraft_ontology;starportAvailable"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="&starcraft_ontology;Player"/>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Dropship"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;nuclearSiloAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;CommandCenter"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;CovertOps"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;ScienceFacility"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Class>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canTrain"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;siegeTankAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;Factory"/>
+            </owl:Restriction>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+                <owl:someValuesFrom rdf:resource="&starcraft_ontology;MachineShop"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+    </owl:Class>
+    <owl:Restriction>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&starcraft_ontology;canBuild"/>
+                <owl:hasValue rdf:resource="&starcraft_ontology;refineryAvailable"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:onProperty rdf:resource="&starcraft_ontology;hasUnit"/>
+        <owl:someValuesFrom rdf:resource="&starcraft_ontology;SCV"/>
+    </owl:Restriction>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#p">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#r">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#u">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&starcraft_ontology;Player"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&starcraft_ontology;isOwnedBy"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#p"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&starcraft_ontology;isInRegion"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&starcraft_ontology;Unit"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&starcraft_ontology;Region"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&starcraft_ontology;hasPresenceIn"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&starcraft_ontology;Region"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#r"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="&starcraft_ontology;isInRegion"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&starcraft_ontology;Unit"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&starcraft_ontology;KnownRegion"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#r"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&starcraft_ontology;Player"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="&starcraft_ontology;Region"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#r"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&starcraft_ontology;Unit"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&starcraft_ontology;isInRegion"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&starcraft_ontology;hasUnit"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#u"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&starcraft_ontology;hasUnitIn"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#r"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&starcraft_ontology;hasEnemyUnit"/>
+                        <swrl:argument1 rdf:resource="&starcraft_ontology;player0"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#u"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&starcraft_ontology;isOwnedBy"/>
+                                <swrl:argument2 rdf:resource="&starcraft_ontology;player1"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&starcraft_ontology;Unit"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#u"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

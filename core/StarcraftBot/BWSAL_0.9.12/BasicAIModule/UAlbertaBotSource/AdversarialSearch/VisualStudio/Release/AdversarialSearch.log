@@ -1,0 +1,44 @@
+﻿Build started 5/6/2013 3:00:03 PM.
+     1>Project "C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\AdversarialSearch\VisualStudio\AdversarialSearch.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\CL.exe /c /IC:\libraries\boost_1_51_0 /I"C:\Program Files (x86)\Starcraft\BWAPI 3.7.4\include" /I\include /I\include /I\include\freetype2 /I\include /Zi /nologo /W3 /WX- /Ox /Oi /Ot /Oy /GT /GL /D WIN32 /D NDEBUG /D _CONSOLE /D NOMINMAX /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc90.pdb" /Gd /TP /analyze- /errorReport:prompt ..\source\AlphaBeta.cpp ..\source\Common.cpp ..\source\Display.cpp ..\source\Game.cpp ..\source\GameState.cpp ..\source\Hash.cpp ..\source\MicroSearchParameters.cpp ..\source\Player.cpp ..\source\test.cpp ..\source\Timer.cpp ..\source\TranspositionTable.cpp
+         AlphaBeta.cpp
+         Common.cpp
+         Display.cpp
+         Game.cpp
+         GameState.cpp
+         Hash.cpp
+         MicroSearchParameters.cpp
+         Player.cpp
+         test.cpp
+         Timer.cpp
+         TranspositionTable.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\UAlbertaBot\VisualStudio\Release\AdversarialSearch.exe" /INCREMENTAL:NO /NOLOGO "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4/lib/BWAPI.lib" "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4/lib/BWTA.lib" "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4/lib/tinyxml.lib" "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4/lib/CGAL-vc90-mt.lib" "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4/lib/libboost_thread-vc90-mt-1_40.lib" "C:\Program Files (x86)\Starcraft\BWAPI 3.7.4/lib/gmp-vc90-mt.lib" /SDL.lib /SDLmain.lib /opengl32.lib /SDL_image.lib /ftgl_static_MT.lib /ftgl_dynamic_MT.lib /SDL_gfx.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\AdversarialSearch.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\UAlbertaBot\VisualStudio\Release\AdversarialSearch.pdb" /MAP /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\UAlbertaBot\VisualStudio\Release\AdversarialSearch.lib" /MACHINE:X86 /PROFILE Release\AlphaBeta.obj
+         Release\Common.obj
+         Release\Display.obj
+         Release\Game.obj
+         Release\GameState.obj
+         Release\Hash.obj
+         Release\MicroSearchParameters.obj
+         Release\Player.obj
+         Release\test.obj
+         Release\Timer.obj
+         Release\TranspositionTable.obj
+     1>LINK : warning LNK4044: unrecognized option '/SDL.lib'; ignored
+     1>LINK : warning LNK4044: unrecognized option '/SDLmain.lib'; ignored
+     1>LINK : warning LNK4044: unrecognized option '/opengl32.lib'; ignored
+     1>LINK : warning LNK4044: unrecognized option '/SDL_image.lib'; ignored
+     1>LINK : warning LNK4044: unrecognized option '/ftgl_static_MT.lib'; ignored
+     1>LINK : warning LNK4044: unrecognized option '/ftgl_dynamic_MT.lib'; ignored
+     1>LINK : warning LNK4044: unrecognized option '/SDL_gfx.lib'; ignored
+         Generating code
+         Finished generating code
+         AdversarialSearch.vcxproj -> C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\UAlbertaBot\VisualStudio\Release\AdversarialSearch.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\UAlbertaBot\VisualStudio\Release\AdversarialSearch.exe;#1" /manifest Release\AdversarialSearch.exe.intermediate.manifest
+     1>Done Building Project "C:\Users\dustin\Desktop\Current Projects\UAlbertaBot\AdversarialSearch\VisualStudio\AdversarialSearch.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:14.13

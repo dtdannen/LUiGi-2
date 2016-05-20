@@ -1,0 +1,56 @@
+﻿Build started 5/20/2016 12:08:20 PM.
+     1>Project "C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\BasicAIModule\BasicAIModule.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\CL.exe /c /IC:\libraries\boost_1_51_0 /I\include /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D EXAMPLEAIMODULE_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc90.pdb" /Gd /TP /analyze- /errorReport:prompt Source\PlanStep.cpp
+         PlanStep.cpp
+     1>Source\PlanStep.cpp(983): warning C4018: “<”: 有符号/无符号不匹配
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:C:\libraries\boost_1_51_0\stage\lib ../lib/BWAPI.lib ../lib/BWTA.lib ../lib/tinyxml.lib "../lib/CGAL-vc90-mt.lib" "../lib/libboost_thread-vc90-mt-1_40.lib" "../lib/gmp-vc90-mt.lib" "../lib/mpfr-vc90-mt.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\HierarchicalGDABot.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.lib" /MACHINE:X86 /DLL Release\Assignment.obj
+         Release\Base.obj
+         Release\BaseManager.obj
+         Release\BorderManager.obj
+         Release\BuildingPlacer.obj
+         Release\BuildManager.obj
+         Release\BuildOrderManager.obj
+         Release\ConstructionManager.obj
+         Release\InformationManager.obj
+         Release\MetaUnit.obj
+         Release\MorphManager.obj
+         Release\ProductionManager.obj
+         Release\ScoutManager.obj
+         Release\SupplyManager.obj
+         Release\TechManager.obj
+         Release\UnitGroup.obj
+         Release\UnitGroupManager.obj
+         Release\UnitItem.obj
+         Release\UpgradeManager.obj
+         Release\WorkerManager.obj
+         Release\AttackClosestScript.obj
+         Release\DebugPrinter.obj
+         Release\DefendScript.obj
+         Release\ExpandAndMine.obj
+         Release\ExpandManager.obj
+         Release\UnitProductionManager.obj
+         Release\PlanExecutor.obj
+         Release\GamestateDumper.obj
+         Release\BotAIModule.obj
+         Release\Dll.obj
+         Release\Util.obj
+         Release\PlannerClient.obj
+         Release\PlanStep.obj
+            正在创建库 C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.lib 和对象 C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.exp
+     1>LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+         正在生成代码
+         已完成代码的生成
+         BasicAIModule.vcxproj -> C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.dll
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.dll;#2" /manifest Release\HierarchicalGDABot.dll.intermediate.manifest
+       PostBuildEvent:
+         copy "C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\Release\HierarchicalGDABot.dll" "F:\starcraft\BWAPI 3.7.4\..\bwapi-data\AI\HierarchicalGDABot.dll"
+         :VCEnd
+                 1 file(s) copied.
+     1>Done Building Project "C:\Users\Gary\Downloads\hierarchical-gda-master\core\StarcraftBot\BWSAL_0.9.12\BasicAIModule\BasicAIModule.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:12.18

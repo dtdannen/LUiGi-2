@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Addons">
+      <UniqueIdentifier>{14dadaa3-7bab-4db1-93b3-5f6ab2c21964}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Dll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GamestateDumper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlannerClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlanStep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BotAIModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlanExecutor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\Assignment.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BuildManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\TechManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UpgradeManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\WorkerManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BuildingPlacer.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\ConstructionManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\MorphManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\ProductionManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BaseManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BuildOrderManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UnitGroup.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UnitGroupManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\MetaUnit.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UnitItem.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\Base.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BorderManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\InformationManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\SupplyManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DebugPrinter.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UnitProductionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\ScoutManager.cpp">
+      <Filter>Addons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AttackClosestScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DefendScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExpandManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ExpandAndMine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Addons\Util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GamestateDumper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlanStep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BotAIModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlanExecutor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UnitProductionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AttackClosestScript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlannerClient.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DefendScript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExpandManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExpandAndMine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

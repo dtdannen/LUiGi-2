@@ -1,0 +1,5 @@
+*.class
+*.sdf
+*.opensdf
+/aiide-ws-2013/GDA_with_Ontology/nbproject/private/
+/aiide-ws-2013/GDA_with_Ontology/build/

@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Addons">
+      <UniqueIdentifier>{b1af8b4a-5cef-44ee-add6-614a329db99b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\WorkerManager">
+      <UniqueIdentifier>{95787472-ce4d-4e30-95a7-432b97e739fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\BuildingPlacer">
+      <UniqueIdentifier>{1a52ecef-9a4b-466f-be51-bdade9058563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\SupplyManager">
+      <UniqueIdentifier>{a0e1814b-4dd0-40f8-acbc-d9dbecf390dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\Arbitrator">
+      <UniqueIdentifier>{ad27c3af-8f9b-488f-9677-30fef90bce92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\BWTA">
+      <UniqueIdentifier>{28a87ebd-4bdd-4f53-a3ec-43869b8e61e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\ConstructionManager">
+      <UniqueIdentifier>{22c0ef28-7308-428e-a074-c7c302d37053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\BaseManager">
+      <UniqueIdentifier>{87e127bf-bbd2-4a7d-9c16-57420441a3a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\ProductionManager">
+      <UniqueIdentifier>{f1caf652-b4c3-4e93-9b5a-b69b21e39bee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\MorphManager">
+      <UniqueIdentifier>{8763a2ee-c3d1-45a8-b1c6-b4b03045c121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\BuildManager">
+      <UniqueIdentifier>{d18051e4-0c3e-4d61-815a-eb2faecfb0c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\TechManager">
+      <UniqueIdentifier>{edfb65c3-0601-43a4-b131-7768e3a33f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\UpgradeManager">
+      <UniqueIdentifier>{7b55a9df-081e-4b14-a3e8-201b630738db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\ScoutManager">
+      <UniqueIdentifier>{b0323abb-22ff-4ddd-8ff3-89c29cc9494c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\BuildOrderManager">
+      <UniqueIdentifier>{0fd713b0-e2d2-489c-be77-ee9cd6c8ec25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\DefenseManager">
+      <UniqueIdentifier>{a89655ff-7e98-4442-8317-2992a73247ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\InformationManager">
+      <UniqueIdentifier>{be88274b-4dfb-463a-8fb4-d32da569a63c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\UnitGroupManager">
+      <UniqueIdentifier>{e0fc9830-3aab-4a28-840f-69a187a4b8ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Addons\BorderManager">
+      <UniqueIdentifier>{28e9c646-c1f1-459c-beed-935204f3068b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Addons\Assignment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Dll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\EnhancedUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RushBot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\WorkerManager.cpp">
+      <Filter>Addons\WorkerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BuildingPlacer.cpp">
+      <Filter>Addons\BuildingPlacer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\SupplyManager.cpp">
+      <Filter>Addons\SupplyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\ConstructionManager.cpp">
+      <Filter>Addons\ConstructionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\Base.cpp">
+      <Filter>Addons\BaseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BaseManager.cpp">
+      <Filter>Addons\BaseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\ProductionManager.cpp">
+      <Filter>Addons\ProductionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\MorphManager.cpp">
+      <Filter>Addons\MorphManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BuildManager.cpp">
+      <Filter>Addons\BuildManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\TechManager.cpp">
+      <Filter>Addons\TechManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UpgradeManager.cpp">
+      <Filter>Addons\UpgradeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\ScoutManager.cpp">
+      <Filter>Addons\ScoutManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BuildOrderManager.cpp">
+      <Filter>Addons\BuildOrderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\MetaUnit.cpp">
+      <Filter>Addons\BuildOrderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UnitItem.cpp">
+      <Filter>Addons\BuildOrderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\DefenseManager.cpp">
+      <Filter>Addons\DefenseManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\InformationManager.cpp">
+      <Filter>Addons\InformationManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UnitGroup.cpp">
+      <Filter>Addons\UnitGroupManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\UnitGroupManager.cpp">
+      <Filter>Addons\UnitGroupManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Addons\BorderManager.cpp">
+      <Filter>Addons\BorderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackClosestScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\EnhancedUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\RectangleArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RushBot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Addons\Util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\WorkerManager.h">
+      <Filter>Addons\WorkerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BuildingPlacer.h">
+      <Filter>Addons\BuildingPlacer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SupplyManager.h">
+      <Filter>Addons\SupplyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Arbitrator\Arbitrator.h">
+      <Filter>Addons\Arbitrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Arbitrator\Controller.h">
+      <Filter>Addons\Arbitrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Arbitrator\Heap.h">
+      <Filter>Addons\Arbitrator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWTA\BaseLocation.h">
+      <Filter>Addons\BWTA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWTA\Chokepoint.h">
+      <Filter>Addons\BWTA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWTA\Polygon.h">
+      <Filter>Addons\BWTA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWTA\RectangleArray.h">
+      <Filter>Addons\BWTA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BWTA\Region.h">
+      <Filter>Addons\BWTA</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ConstructionManager.h">
+      <Filter>Addons\ConstructionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BaseManager\Base.h">
+      <Filter>Addons\BaseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BaseManager\BaseManager.h">
+      <Filter>Addons\BaseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ProductionManager.h">
+      <Filter>Addons\ProductionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MorphManager.h">
+      <Filter>Addons\MorphManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BuildManager.h">
+      <Filter>Addons\BuildManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\TechManager.h">
+      <Filter>Addons\TechManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UpgradeManager.h">
+      <Filter>Addons\UpgradeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ScoutManager.h">
+      <Filter>Addons\ScoutManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BuildOrderManager\BuildOrderManager.h">
+      <Filter>Addons\BuildOrderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BuildOrderManager\TechItem.h">
+      <Filter>Addons\BuildOrderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BuildOrderManager\UnitItem.h">
+      <Filter>Addons\BuildOrderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DefenseManager.h">
+      <Filter>Addons\DefenseManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\InformationManager.h">
+      <Filter>Addons\InformationManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UnitGroup.h">
+      <Filter>Addons\UnitGroupManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UnitGroupManager.h">
+      <Filter>Addons\UnitGroupManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BorderManager.h">
+      <Filter>Addons\BorderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackClosestScript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

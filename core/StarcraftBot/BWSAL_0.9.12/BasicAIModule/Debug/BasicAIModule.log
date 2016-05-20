@@ -1,0 +1,28 @@
+﻿Build started 5/16/2014 11:48:10 PM.
+     1>Project "C:\Users\Dustin\Documents\GitHub\hierarchical-gda\core\StarcraftBot\BWSAL_0.9.12\BasicAIModule\BasicAIModule.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin\CL.exe /c /I../include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D EXAMPLEAIMODULE_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc90.pdb" /Gd /TP /analyze- /errorReport:prompt Source\AttackClosestScript.cpp Source\BotAIModule.cpp Source\DefendScript.cpp Source\Dll.cpp Source\GamestateDumper.cpp Source\PlanExecutor.cpp Source\PlanStep.cpp Source\PlannerClient.cpp Source\UnitProductionManager.cpp
+         UnitProductionManager.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\unitproductionmanager.h(6): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         PlannerClient.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\unitproductionmanager.h(6): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         PlanStep.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\unitproductionmanager.h(6): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         PlanExecutor.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\unitproductionmanager.h(6): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         GamestateDumper.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\gamestatedumper.h(7): fatal error C1083: Cannot open include file: 'boost/algorithm/string/replace.hpp': No such file or directory
+         Dll.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\unitproductionmanager.h(6): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         DefendScript.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\defendscript.h(4): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         BotAIModule.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\unitproductionmanager.h(6): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         AttackClosestScript.cpp
+     1>c:\users\dustin\documents\github\hierarchical-gda\core\starcraftbot\bwsal_0.9.12\basicaimodule\source\attackclosestscript.h(4): fatal error C1083: Cannot open include file: 'boost\foreach.hpp': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\Users\Dustin\Documents\GitHub\hierarchical-gda\core\StarcraftBot\BWSAL_0.9.12\BasicAIModule\BasicAIModule.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:16.29
